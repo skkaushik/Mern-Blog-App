@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Toolbar,
@@ -9,13 +10,30 @@ import {
   Tab,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector ,useDispatch} from "react-redux";
+import { authActions } from "../redux/store";
+
+
 
 
 function Header() {
     const isLogin=useSelector(state=>state.isLogin)
     console.log(isLogin);
   const [value, setValue] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //logout
+  const handleLogout = () => {
+    try {
+      dispatch(authActions.logout());
+      alert.success("Logout Successfully");
+      navigate("/login");
+      localStorage.clear();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <AppBar position="sticky">
@@ -54,7 +72,7 @@ function Header() {
             </>
            )}
            {isLogin &&(
-             <Button sx={{ margin: 1, color: "white" }}>Logout</Button>
+             <Button onClick={handleLogout}  sx={{ margin: 1, color: "white" }}>Logout</Button>
            )}
           </Box>
         </Toolbar>
