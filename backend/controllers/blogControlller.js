@@ -52,12 +52,7 @@ exports.createBlogController = async (req, res) => {
         }
 
     const newBlog = new blogModel({ title, description, image,user});
-        const session = await mongoose.startSession();
-        session.startTransaction();
-        await newBlog.save({ session });
-        exisitingUser.blogs.push(newBlog);
-        await exisitingUser.save({ session });
-        await session.commitTransaction( );
+        
     await newBlog.save();
     return res.status(201).send({
       success: true,
@@ -169,3 +164,12 @@ exports.userBlogControlller = async (req, res) => {
   //     });
   //   }
 };
+
+
+
+// const session = await mongoose.startSession();
+        // session.startTransaction();
+        // await newBlog.save({ session });
+        // exisitingUser.blogs.push(newBlog);
+        // await exisitingUser.save({ session });
+        // await session.commitTransaction( );
