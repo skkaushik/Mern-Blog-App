@@ -8,6 +8,7 @@ const userModel = require("../models/userModel");
 exports.getAllBlogsController = async (req, res) => {
   try {
     const blogs = await blogModel.find({}).populate("user");
+    console.log(blogs)
     if (!blogs) {
       return res.status(200).send({
         success: false,
@@ -141,27 +142,27 @@ exports.deleteBlogController = async (req, res) => {
 
 //GET USER BLOG
 exports.userBlogControlller = async (req, res) => {
-  //   try {
-  //     const userBlog = await userModel.findById(req.params.id).populate("blogs");
-  //     if (!userBlog) {
-  //       return res.status(404).send({
-  //         success: false,
-  //         message: "blogs not found with this id",
-  //       });
-  //     }
-  //     return res.status(200).send({
-  //       success: true,
-  //       message: "user blogs",
-  //       userBlog,
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //     return res.status(400).send({
-  //       success: false,
-  //       message: "error in user blog",
-  //       error,
-  //     });
-  //   }
+    try {
+      const userBlog = await userModel.findById(req.params.id).populate("blogs");
+      if (!userBlog) {
+        return res.status(404).send({
+          success: false,
+          message: "blogs not found with this id",
+        });
+      }
+      return res.status(200).send({
+        success: true,
+        message: "user blogs",
+        userBlog,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).send({
+        success: false,
+        message: "error in user blog",
+        error,
+      });
+    }
 };
 
 
