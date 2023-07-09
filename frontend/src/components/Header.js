@@ -9,15 +9,20 @@ import {
   Tab,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 function Header() {
+    const isLogin=useSelector(state=>state.isLogin)
+    console.log(isLogin);
   const [value, setValue] = useState();
   return (
     <>
       <AppBar position="sticky">
         <Toolbar>
           <Typography variant="h4">My Blog App</Typography>
-          <Box display={"flex"} marginLeft={"auto"} marginRight={"auto"}>
+          {isLogin && (
+            <Box display={"flex"} marginLeft={"auto"} marginRight={"auto"}>
             <Tabs
               textColor="inherit"
               value={value}
@@ -27,8 +32,12 @@ function Header() {
               <Tab label=" My Blogs" LinkComponent={Link} to="/my-blogs" />
             </Tabs>
           </Box>
+          )}
+          
           <Box display={"flex"} marginLeft={"auto"}>
-            <Button
+           {!isLogin && (
+            <>
+             <Button
               sx={{ margin: 1, color: "white" }}
               LinkComponent={Link}
               to="/login"
@@ -42,7 +51,11 @@ function Header() {
             >
               Register
             </Button>
-            <Button sx={{ margin: 1, color: "white" }}>Logout</Button>
+            </>
+           )}
+           {isLogin &&(
+             <Button sx={{ margin: 1, color: "white" }}>Logout</Button>
+           )}
           </Box>
         </Toolbar>
       </AppBar>
