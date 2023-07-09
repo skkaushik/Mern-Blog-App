@@ -81,3 +81,27 @@ exports.loginController = async (req, res) => {
           message: "email is not registerd",
         });
       }
+    
+    //password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).send({
+        success: false,
+        message: "Invlid username or password",
+      });
+    }
+    return res.status(200).send({
+      success: true,
+      messgae: "login successfully",
+      user,
+    });
+}
+      catch (error) {
+        console.log(error);
+        return res.status(500).send({
+          success: false,
+          message: "Error In Login Callcback",
+          error,
+        });
+      }
+    };
