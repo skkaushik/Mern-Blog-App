@@ -23,7 +23,7 @@ const CreateBlog = () => {
     e.preventDefault();
     // console.log(inputs)
     try {
-      const { data } = await axios.post("http://localhost:8080/api/v1/blog/create-blog", {
+      const { data } = await axios.post("https://blogapp-9bzx.onrender.com/api/v1/blog/create-blog", {
         title: inputs.title,
         description: inputs.description,
         image: inputs.image,

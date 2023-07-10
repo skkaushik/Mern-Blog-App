@@ -6,7 +6,7 @@ const Blogs = () => {
   //get blogs
   const getAllBlogs = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/api/v1/blog/all-blog");
+      const { data } = await axios.get("https://blogapp-9bzx.onrender.com/api/v1/blog/all-blog");
       if (data?.success) {
         setBlogs(data?.blogs);
       }
