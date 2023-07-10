@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import toast from "react-hot-toast";
 import axios from "axios";
+// import  toast  from "react-hot-toast";
 const Register = () => {
   const navigate = useNavigate();
   //state

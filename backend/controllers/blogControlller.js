@@ -130,8 +130,9 @@ exports.getBlogByIdController = async (req, res) => {
 //Delete Blog
 exports.deleteBlogController = async (req, res) => {
   try {
-     await blogModel.findOneAndDelete(req.params.id)
-    //   .findByIdAndDelete(req.params.id);
+     await blogModel
+    //  .findOneAndDelete(req.params.id)
+      .findByIdAndDelete(req.params.id);
    
     return res.status(200).send({
       success: true,

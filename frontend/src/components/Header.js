@@ -12,13 +12,15 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector ,useDispatch} from "react-redux";
 import { authActions } from "../redux/store";
+import toast  from "react-hot-toast";
 
 
 
 
 function Header() {
-    const isLogin=useSelector(state=>state.isLogin)
-    console.log(isLogin);
+    let isLogin=useSelector(state=>state.isLogin)
+    // console.log(isLogin);
+    isLogin = isLogin || localStorage.getItem("userId");
   const [value, setValue] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ function Header() {
   const handleLogout = () => {
     try {
       dispatch(authActions.logout());
-      alert.success("Logout Successfully");
+      toast.success("Logout Successfully");
       navigate("/login");
       localStorage.clear();
     } catch (error) {
