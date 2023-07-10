@@ -19,7 +19,7 @@ const Blogs = () => {
   }, []);
   return (
     <div>
-        Blogs Page
+        
       {blogs &&
         blogs.map((blog) => (
           <BlogCard

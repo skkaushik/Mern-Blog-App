@@ -25,7 +25,7 @@ const UserBlogs = () => {
   console.log(blogs);
   return (
     <div>
-        <h1>user blogs</h1>
+        {/* <h1>user blogs</h1> */}
       {blogs && blogs.length > 0 ? (
         blogs.map((blog) => (
           <BlogCard
