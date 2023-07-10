@@ -52,8 +52,15 @@ exports.createBlogController = async (req, res) => {
         }
 
     const newBlog = new blogModel({ title, description, image,user});
+    const session = await mongoose.startSession();
+        session.startTransaction();
+        await newBlog.save({ session });
+        exisitingUser.blogs.push(newBlog);
+        await exisitingUser.save({ session });
+        await session.commitTransaction( );
         
     await newBlog.save();
+    console.log(newBlog)
     return res.status(201).send({
       success: true,
       message: "Blog Created!",
@@ -63,7 +70,7 @@ exports.createBlogController = async (req, res) => {
     console.log(error);
     return res.status(400).send({
       success: false,
-      message: "Error WHile Creting blog",
+      message: "Error While Creating blog",
       error,
     });
   }
