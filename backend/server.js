@@ -39,6 +39,3 @@ app.listen(PORT, () => {
 
 
 
-// PORT= 8080
-// DEV_MODE= development
-// MONGO_URL=mongodb+srv://skkaushik:SachinMongo@cluster0.v2zjszi.mongodb.net/blogapp
